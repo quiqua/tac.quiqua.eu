@@ -14,12 +14,13 @@ class BaseConfig(object):
 
 
   MAIL_SERVER = 'mail.yourdomain.com'
-  MAIL_PORT = 25
+  MAIL_PORT = 587
   MAIL_USE_SSL = False
-  MAIL_USE_TLS = False
-  MAIL_USERNAME = 'yourusername'
-  MAIL_PASSWORD = 'yourpassword'
-  DEFAULT_MAIL_SENDER = ("TAC Berlin", "mail.yourdomain.com")
+  MAIL_USE_TLS = True
+
+  MAIL_USERNAME = 'username'
+  MAIL_PASSWORD = 'password'
+  MAIL_DEFAULT_SENDER = ("Mailer", "mail.yourdomain.com")
 
   # Flask-Security Flags
   SECURITY_URL_PREFIX = '/auth' # namespace for login/register/....

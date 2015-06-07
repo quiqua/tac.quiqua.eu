@@ -88,6 +88,6 @@ def admin():
 @frontend.route("/mail")
 def mailsender():
     msg = Message("Hello",
-                  recipients=["marcel@quiqua.com"])
+                  recipients=["marcel@quiqua.eu"])
     mail.send(msg)
     return 'sent'
