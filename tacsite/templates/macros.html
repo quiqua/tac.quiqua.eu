@@ -1,0 +1,61 @@
+{% macro render_errors(field) %}
+  {% if field.errors %}
+  <ul class="error">
+      {% for error in field.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+{% endmacro %}
+
+
+{% macro input_offset(field, class='form-control', placeholder='') -%}
+<div class="form-group {% if field.errors %}has-error{% endif %}">
+    <label for="{{ field.id }}" class="col-sm-offset-2 col-sm-2 control-label">{{ field.label.text|safe }}</label>
+    <div class="col-sm-4">
+        {{ field(class=class, placeholder=placeholder) }} {{ render_errors(field) }}
+    </div>
+</div>
+{%- endmacro %}
+
+{% macro input(field, class='form-control') -%}
+<div class="form-group {% if field.errors %}has-error{% endif %}">
+    <label for="{{ field.id }}" class="col-sm-2 control-label">{{ field.label.text|safe }}</label>
+    <div class="col-sm-3">
+        {{ field(class=class) }} {{ render_errors(field) }}
+    </div>
+</div>
+{%- endmacro %}
+
+
+{% macro input_multiple(fields, class='form-control', placeholder='') -%}
+<div class="form-group">
+    {% for field in fields %}
+    <div {% if field.errors %}class="has-error"{% endif %}>
+      <label for="{{ field.id }}" class="col-sm-2 control-label">{{ field.label.text|safe }}</label>
+      <div class="col-sm-3">
+          {{ field(class=class, placeholder=placeholder) }} {{ render_errors(field) }}
+      </div>
+    </div>
+    {% endfor %}
+</div>
+{%- endmacro %}
+
+
+{% macro textarea(field, value='', rows=3, class='form-control') -%}
+<div class="form-group {% if field.errors %}error{% endif %}">
+    <label for="{{ field.id }}" class="col-md-4 control-label">{{ field.label.text|safe }}{%- if field.flags.required -%}*{%- endif %}</label>
+    <div class="col-md-8">
+        {{ field(value=value, rows=rows, class=class) }} {{ render_errors(field) }}
+    </div>
+</div>
+{%- endmacro %}
+
+
+{% macro submit_button(text, id=False, enabled=True) -%}
+<div class="form-group">
+    <div class="col-sm-8 col-sm-offset-2 text-center">
+        <button {% if id %} id="{{id}}"{% endif %} type="submit" class="btn btn-lg btn-outline {% if not enabled %}disabled{% endif %}"><i class="fa fa-download"></i>{{ text }}</button>
+    </div>
+</div>
+{%- endmacro %}

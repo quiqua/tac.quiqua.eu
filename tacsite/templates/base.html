@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}6. Berliner TAC-Meisterschaft{% endblock %}</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+
+    <link href="{{ url_for('static', filename='css/leaflet.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/tacsite.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='fonts/Montserrat-Regular.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='fonts/LatoLatinMed-Regular.css') }}" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="{{ url_for('static', filename='js/html5shiv.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/respond.min.js') }}"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">6. Berliner TAC-Meisterschaft</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            {% block navigation %}
+            {% endblock %}
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+
+    <header>
+        {% block header_content %}
+        {% endblock %}
+    </header>
+
+
+    {% block sections %}
+    {% endblock %}
+
+
+    <!-- Footer -->
+    <footer class="text-center">
+        {% block footer_content %}
+        {% endblock %}
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; M. Radischat 2015
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+
+
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/classie.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cbpAnimatedHeader.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/leaflet.js') }}"></script>
+    <!-- Contact Form JavaScript -->
+    <!-- <script src="{{ url_for('static', filename='js/jqBootstrapValidation.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/contact_me.js') }}"></script> -->
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{{ url_for('static', filename='js/freelancer.js') }}"></script>
+
+    {% block custom_javascript %}
+    {% endblock %}
+</body>
+
+</html>

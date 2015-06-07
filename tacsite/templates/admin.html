@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block navigation %}
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+        <li class="hidden">
+            <a href="#page-top"></a>
+        </li>
+        <li class="page-scroll">
+            <a href="/">Startseite</a>
+        </li>
+        <li class="page-scroll">
+            <a href="#teams">Teams verwalten</a>
+        </li>
+        <li class="page-scroll">
+            <a href="#message">Nachricht verschicken</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block header_content %}
+<div class="container">
+    <div class="row">
+        <div class="teamcount col-sm-12 text-center">
+            Es sind noch {{free_places}} Pl&auml;tze frei.
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block sections %}
+<!-- Portfolio Grid Section -->
+<section id="teams">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Teams</h2>
+                <hr class="star-primary">
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Teamname</th>
+                        <th>Spieler 1</th>
+                        <th>Spieler 2</th>
+                        <th>Bezahlt</th>
+                        <th>Editieren</th>
+                        <th>L&ouml;schen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for index, team in enumerate(teams) %}
+                    <tr>
+                        <td>{{index + 1}}</td>
+                        <td>{{team.name}}</td>
+                        {% for person in team.persons %}
+                        <td>{{person.first_name}} {{person.last_name}}</td>
+                        {% endfor %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section id="message" class="success">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Nachricht verschicken</h2>
+                <hr class="star-light">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <form name="sentMessage" id="contactForm" novalidate>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 text-center">
+                            <div id="success"></div>
+                            <button type="submit" class="btn btn-lg btn-outline disabled"><i class="fa fa-download"></i>Send Message</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div id="contact-success" class="col-sm-12 text-center hidden">
+                <hr class="star-light">
+                <h4>Die Nachricht wurde erfolgreich gesendet!</h4>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
