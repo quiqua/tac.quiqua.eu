@@ -25,7 +25,7 @@ def split_name(name):
 
 class Team(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
+    name = db.Column(db.String, unique=True)
     payed = db.Column(db.Boolean)
     persons = db.relationship('Person', secondary=team_compositions,
                 backref=db.backref('teams', lazy='dynamic'), lazy='dynamic')
@@ -33,6 +33,12 @@ class Team(db.Model):
     @classmethod
     def by_name(cls, name):
         q = Team.query.filter(Team.name == name)
+        return q.first()
+
+
+    @classmethod
+    def by_id(cls, id):
+        q = Team.query.filter(Team.id == id)
         return q.first()
 
 
@@ -56,9 +62,27 @@ class Team(db.Model):
             return team
         return None
 
+    def update_from_from(self, form):
+        self.name = form.team.data
+        self.payed = form.payed.data
+        self.persons[0].raw_name = form.person_one.data
+        self.persons[0].email_address = form.email_one.data
+        kwargs = split_name(form.person_one.data)
+        self.persons[0].first_name = kwargs['first_name']
+        self.persons[0].last_name = kwargs['last_name']
+        self.persons[1].raw_name = form.person_two.data
+        self.persons[1].email_address = form.email_two.data
+        kwargs = split_name(form.person_two.data)
+        self.persons[1].first_name = kwargs['first_name']
+        self.persons[1].last_name = kwargs['last_name']
+
+        db.session.add(self)
+        db.session.commit()
+
 
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    raw_name = db.Column(db.String)
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
     email_address = db.Column(db.String)
@@ -68,11 +92,13 @@ class Person(db.Model):
         if isinstance(form, Form):
             kwargs = split_name(form.person_one.data)
             kwargs['email_address'] = form.email_one.data
+            kwargs['raw_name'] = form.person_one.data
 
             person_one = Person(**kwargs)
 
             kwargs = split_name(form.person_two.data)
             kwargs['email_address'] = form.email_two.data
+            kwargs['raw_name'] = form.person_two.data
 
             person_two = Person(**kwargs)
 

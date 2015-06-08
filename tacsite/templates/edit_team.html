@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% import "macros.html" as macros %}
+
+{% block navigation %}
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+        <li class="hidden">
+            <a href="#page-top"></a>
+        </li>
+        <li class="page-scroll">
+            <a href="{{url_for('frontend.index')}}">Startseite</a>
+        </li>
+        <li class="page-scroll">
+            <a href="{{url_for('frontend.admin')}}">Admin-Bereich</a>
+        </li>
+        <li class="page-scroll">
+            <a href="{{url_for('frontend.logout')}}">Abmelden</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block header_content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h2>Team bearbeiten</h2>
+        </div>
+    </div>
+    <div class="row">
+        <form id="team-edit" class="form-horizontal" role="form" method="POST" action="{{url_for('frontend.edit_team', team=team.id)}}">
+            {{ edit_form.csrf_token }}
+            {{ macros.input(edit_form.team) }}
+            {{ macros.input(edit_form.person_one) }}
+            {{ macros.input(edit_form.email_one) }}
+            {{ macros.input(edit_form.person_two) }}
+            {{ macros.input(edit_form.email_two) }}
+            {{ macros.input(edit_form.payed) }}
+            {{ macros.submit_button('Speichern', id='editTeam') }}
+        </form>
+    </div>
+</div>
+{% endblock %}
+
