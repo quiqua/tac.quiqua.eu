@@ -26,8 +26,8 @@ class BaseConfig(object):
   SECURITY_URL_PREFIX = '/auth' # namespace for login/register/....
   SECURITY_PASSOWRDLESS = False # Default
   SECURITY_CONFIRMABLE = False # Shall users confirm their identity?
-  SECURITY_REGISTERABLE = True # Shall users register?
-  SECURITY_RECOVERABLE = True # Shall users recover their credentials?
+  SECURITY_REGISTERABLE = False # Shall users register?
+  SECURITY_RECOVERABLE = False # Shall users recover their credentials?
   SECURITY_TRACKABLE = True
 
   SECURITY_PASSWORD_HASH = "bcrypt"

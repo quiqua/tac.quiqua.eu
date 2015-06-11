@@ -13,19 +13,27 @@
 <div class="form-group {% if field.errors %}has-error{% endif %}">
     <label for="{{ field.id }}" class="col-sm-offset-2 col-sm-2 control-label">{{ field.label.text|safe }}</label>
     <div class="col-sm-4">
-        {{ field(class=class, placeholder=placeholder) }} {{ render_errors(field) }}
+        {{ field(class=class, placeholder=placeholder) }} {{ render_errors(field)|safe }}
     </div>
 </div>
 {%- endmacro %}
 
 {% macro input(field, class='form-control') -%}
 <div class="form-group {% if field.errors %}has-error{% endif %}">
-    <label for="{{ field.id }}" class="col-sm-2 control-label">{{ field.label.text|safe }}</label>
-    <div class="col-sm-3">
-        {{ field(class=class) }} {{ render_errors(field) }}
+    <label for="{{ field.id }}" class="col-sm-2 col-sm-offset-2 control-label">{{ field.label.text|safe }}</label>
+    <div class="col-sm-4">
+        {{ field(class=class)|safe }} {{ render_errors(field) }}
     </div>
 </div>
 {%- endmacro %}
+
+{% macro input_labelfree(field, class='form-control', placeholder='') -%}
+<div class="form-group {% if field.errors %}has-error{% endif %}">
+    {{ field(class=class, placeholder=placeholder) }} {{ render_errors(field)|safe }}
+    <p class="help-block text-danger"></p>
+</div>
+{%- endmacro %}
+
 
 
 {% macro input_multiple(fields, class='form-control', placeholder='') -%}
@@ -34,7 +42,7 @@
     <div {% if field.errors %}class="has-error"{% endif %}>
       <label for="{{ field.id }}" class="col-sm-2 control-label">{{ field.label.text|safe }}</label>
       <div class="col-sm-3">
-          {{ field(class=class, placeholder=placeholder) }} {{ render_errors(field) }}
+          {{ field(class=class, placeholder=placeholder) }} {{ render_errors(field)|safe }}
       </div>
     </div>
     {% endfor %}
@@ -42,20 +50,16 @@
 {%- endmacro %}
 
 
-{% macro textarea(field, value='', rows=3, class='form-control') -%}
-<div class="form-group {% if field.errors %}error{% endif %}">
-    <label for="{{ field.id }}" class="col-md-4 control-label">{{ field.label.text|safe }}{%- if field.flags.required -%}*{%- endif %}</label>
-    <div class="col-md-8">
-        {{ field(value=value, rows=rows, class=class) }} {{ render_errors(field) }}
-    </div>
-</div>
-{%- endmacro %}
 
-
-{% macro submit_button(text, id=False, enabled=True) -%}
+{% macro button(field, enabled=True) -%}
 <div class="form-group">
     <div class="col-sm-8 col-sm-offset-2 text-center">
-        <button {% if id %} id="{{id}}"{% endif %} type="submit" class="btn btn-lg btn-outline {% if not enabled %}disabled{% endif %}"><i class="fa fa-download"></i>{{ text }}</button>
+        {% if enabled %}
+        {{ field(class='btn btn-lg btn-outline')|safe }}
+        {% else %}
+        <button type="button" class="btn btn-lg btn-outline {% if not enabled %}disabled{% endif %}">{{ field.label }}</button>
+        {% endif %}
     </div>
 </div>
 {%- endmacro %}
+

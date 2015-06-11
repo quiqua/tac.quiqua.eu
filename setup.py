@@ -6,8 +6,8 @@ project = "tacsite"
 
 setup(
     name=project,
-    version='0.1',
-    description='Fbone (Flask bone) is a Flask (Python microframework) template/bootstrap/boilerplate application.',
+    version='1.0',
+    description='TAC Tournament Website.',
     author='Marcel Radischat',
     author_email='marcel@quiqua.eu',
     packages=["tacsite"],
@@ -19,6 +19,7 @@ setup(
         'Flask-WTF',
         'Flask-Mail',
         'Flask-Security',
+        'py-bcrypt'
     ],
     #test_suite='tests',
     classifiers=[
