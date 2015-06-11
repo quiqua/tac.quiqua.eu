@@ -85,7 +85,7 @@ def admin():
 
     if message_form.submit.data:
         if message_form.validate_on_submit():
-            send_all_teams_mail(message_form)
+            send_all_teams_mail(message_form, teams)
             session['scroll_to'] = 'contact_success'
             return redirect(url_for('frontend.admin'))
         else:

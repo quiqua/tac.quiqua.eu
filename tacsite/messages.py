@@ -25,7 +25,7 @@ def send_registration_mail(team):
 
                          Hier nochmal die wichtigsten Informationen zum Turnier:
                          - Wann: 29.08.2015, 9 Uhr - Spielbeginn 9:30 Uhr
-                         - Wo: Modersohnstraße 55, 10245 Berlin (Vorsicht, bei Google Maps muss man Hausnr. 53 eingeben...)
+                         - Wo: Modersohnstraße 55, 10245 Berlin
                          - Abmeldungen: Bitte bis spätestens 26.08.2015
 
                          Für weitere Fragen stehen wir gern zur Verfügung, ihr könnt uns über diese Email-Adresse (tac@quiqua.eu) oder die Webseite (tac.quiqua.eu) erreichen.
@@ -38,7 +38,8 @@ def send_registration_mail(team):
 
     msg = Message(body=message_content,
                   subject='Anmeldung TAC Turnier Berlin',
-                  recipients=list(set(recipients)))
+                  recipients=list(set(recipients)),
+                  cc=['tac@quiqua.eu'])
     mail.send(msg)
 
 
@@ -65,7 +66,8 @@ def send_all_teams_mail(message_form, teams):
 
     msg = Message(body=message_content,
                   subject='Nachricht zum TAC-Turnier Berlin',
-                  recipients=list(set(email_addresses)))
+                  recipients=list(set(email_addresses)),
+                  cc=['tac@quiqua.eu'])
 
     mail.send(msg)
 
