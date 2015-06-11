@@ -3,14 +3,12 @@
 from flask import Blueprint, render_template, g, jsonify, request, redirect, url_for, session, flash
 from jinja2 import TemplateNotFound
 
-from flask_mail import Message
-
-
 from flask.ext.security.decorators import login_required
 from flask.ext.security import current_user
 from flask.ext.security.decorators import roles_required, roles_accepted, login_required
 from werkzeug.datastructures import MultiDict
 
+from tacsite.extensions import db
 from tacsite.forms import RegistrationForm, ContactForm, MessageForm, EditForm
 from tacsite.messages import (
         send_contact_admin_mail, send_all_teams_mail, send_registration_mail

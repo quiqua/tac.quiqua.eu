@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 from flask.ext.security.utils import encrypt_password
 from tacsite.config import BaseConfig, ProductionConfig
@@ -75,22 +75,7 @@ def configure_logging(app):
     )
     app.logger.addHandler(info_file_handler)
 
-    mail_handler = logging.handlers.SMTPHandler(app.config['MAIL_SERVER'],
-                               app.config['MAIL_USERNAME'],
-                               app.config['ADMINS'],
-                               'O_ops... %s failed!' % app.config['PROJECT'],
-                               (app.config['MAIL_USERNAME'],
-                                app.config['MAIL_PASSWORD']),
-                               ()) # emtpy tuple for tls
-    mail_handler.setLevel(logging.ERROR)
-    mail_handler.setFormatter(logging.Formatter(
-        '%(asctime)s %(levelname)s: %(message)s '
-        '[in %(pathname)s:%(lineno)d]')
-    )
-    app.logger.addHandler(mail_handler)
-
 
 if __name__ == '__main__':
     app = create_app()
-    init_db_command(app)
     app.run()

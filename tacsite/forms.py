@@ -11,7 +11,7 @@ class RegistrationForm(Form):
     person_two = TextField('Spieler 2', validators=[Required()])
     email_one = TextField('Email Spieler 1', validators=[Required(), Email()])
     email_two = TextField('Email Spieler 2', validators=[Required(), Email()])
-    submit = SubmitField('Anmelden!')
+    submit = SubmitField('Anmelden')
 
     def validate_team(self, field):
         if Team.by_name(field.data):

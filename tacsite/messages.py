@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from flask_mail import Message
+
 from tacsite.extensions import mail
 
 def send_registration_mail(team):
@@ -7,11 +9,11 @@ def send_registration_mail(team):
     p1 = team.persons[0]
     p2 = team.persons[1]
     message_content = u"""Hallo %s und %s,
-                         schön das ihr bei unserem Turnier mitmachen wollt.
+                         schön dass ihr bei unserem Turnier mitmachen wollt.
 
-                         Euer Team %s ist registiert. Um die Anmeldung
-                         abzuschließen, bitten wir euch noch die Teilnahmegebühr
-                         von 20€ auf folgendes Konto zu überweisen.
+                         Euer Team %s ist registiert.
+                         Um die Anmeldung abzuschließen, bitten wir euch noch
+                         die Teilnahmegebühr von 25€ auf folgendes Konto zu überweisen.
 
                          Konto-Inhaber: Alexander Flesch
                          IBAN: DE 5612 0965 9700 0124 9282
@@ -26,7 +28,7 @@ def send_registration_mail(team):
                          - Wo: Modersohnstraße 55, 10245 Berlin (Vorsicht, bei Google Maps muss man Hausnr. 53 eingeben...)
                          - Abmeldungen: Bitte bis spätestens 26.08.2015
 
-                         Für weiter Fragen stehen wir gern zur Verfügung, ihr könnt uns über diese Email-Adresse (tac@quiqua.eu) oder die Webseite (tac.quiqua.eu) erreichen.
+                         Für weitere Fragen stehen wir gern zur Verfügung, ihr könnt uns über diese Email-Adresse (tac@quiqua.eu) oder die Webseite (tac.quiqua.eu) erreichen.
 
                          Viele Grüße,
                          Alex und Marcel
@@ -34,9 +36,9 @@ def send_registration_mail(team):
 
     recipients = [p1.email_address, p2.email_address]
 
-    msg = Message(message_content,
+    msg = Message(body=message_content,
                   subject='Anmeldung TAC Turnier Berlin',
-                  recipients=set(recipients))
+                  recipients=list(set(recipients)))
     mail.send(msg)
 
 
@@ -45,7 +47,7 @@ def send_contact_admin_mail(contact_form):
     message_content += 'Email-Adresse: ' + contact_form.email.data + '\n'
     message_content += 'Telefon: ' + contact_form.phone.data + '\n'
     message_content += '\n' + contact_form.message.data
-    msg = Message(message_content,
+    msg = Message(body=message_content,
                   subject='Kontakt-Formular',
                   recipients=['tac@quiqua.eu'])
 
@@ -61,9 +63,9 @@ def send_all_teams_mail(message_form, teams):
         for person in team.persons:
             email_addresses.append(person.email_address)
 
-    msg = Message(message_content,
+    msg = Message(body=message_content,
                   subject='Nachricht zum TAC-Turnier Berlin',
-                  recipients=set(email_addresses))
+                  recipients=list(set(email_addresses)))
 
     mail.send(msg)
 
