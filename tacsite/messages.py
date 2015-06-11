@@ -9,35 +9,37 @@ def send_registration_mail(team):
     p1 = team.persons[0]
     p2 = team.persons[1]
     message_content = u"""\
-                       Hallo %s und %s,
-                       schön dass ihr bei unserem Turnier mitmachen wollt.
+        Hallo %s und %s,
+        schön dass ihr bei unserem Turnier mitmachen wollt.
 
-                       Euer Team %s ist registiert.
-                       Um die Anmeldung abzuschließen, bitten wir euch noch
-                       die Teilnahmegebühr von 25€ auf folgendes Konto zu überweisen.
+        Euer Team %s ist registiert.
+        Um die Anmeldung abzuschließen, bitten wir euch noch
+        die Teilnahmegebühr von 25€ auf folgendes Konto zu überweisen.
 
-                       Konto-Inhaber: Alexander Flesch
-                       IBAN: DE 5612 0965 9700 0124 9282
-                       BIC: GENODEF1S10
+        Konto-Inhaber: Alexander Flesch
+        IBAN: DE 5612 0965 9700 0124 9282
+        BIC: GENODEF1S10
 
-                       Gebt als Verwendungszweck bitte "TAC %s" an.
-
-
-                       Falls nach 10 Tagen noch keine Überweisung eingegangen ist,
-                       verfällt eure Anmeldung.
+        Gebt als Verwendungszweck bitte "TAC %s" an.
 
 
-                       Hier nochmal die wichtigsten Informationen zum Turnier:
-                       - Wann: 29.08.2015, 9 Uhr - Spielbeginn 9:30 Uhr
-                       - Wo: Modersohnstraße 55, 10245 Berlin
-                       - Abmeldungen: Bitte bis spätestens 26.08.2015
-
-                       Für weitere Fragen stehen wir gern zur Verfügung, ihr könnt uns über diese Email-Adresse (tac@quiqua.eu) oder die Webseite (tac.quiqua.eu) erreichen.
+        Falls nach 10 Tagen noch keine Überweisung eingegangen ist,
+        verfällt eure Anmeldung.
 
 
-                       Viele Grüße,
-                       Alex und Marcel
-                       """ % (p1.first_name, p2.first_name, team.name, team.name)
+        Hier nochmal die wichtigsten Informationen zum Turnier:
+        - Wann: 29.08.2015, 9 Uhr - Spielbeginn 9:30 Uhr
+        - Wo: Modersohnstraße 55, 10245 Berlin
+        - Abmeldungen: Bitte bis spätestens 26.08.2015
+
+        Für weitere Fragen stehen wir gern zur Verfügung,
+        ihr könnt uns über diese Email-Adresse (tac@quiqua.eu)
+        oder die Webseite (tac.quiqua.eu) erreichen.
+
+
+        Viele Grüße,
+        Alex und Marcel
+        """ % (p1.first_name, p2.first_name, team.name, team.name)
 
     recipients = [p1.email_address, p2.email_address]
 
