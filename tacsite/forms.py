@@ -25,6 +25,7 @@ class EditForm(Form):
     email_one = TextField('Email Spieler 1', validators=[Required(), Email()])
     email_two = TextField('Email Spieler 2', validators=[Required(), Email()])
     payed = BooleanField('Bezahlt')
+    submit = SubmitField('Speichern')
 
 
 class ContactForm(Form):
