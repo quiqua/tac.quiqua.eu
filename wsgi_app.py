@@ -1,0 +1,1 @@
+from tacsite.app import create_app

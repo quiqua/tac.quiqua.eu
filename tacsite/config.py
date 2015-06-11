@@ -6,12 +6,14 @@ class BaseConfig(object):
   BASEDIR = os.path.abspath(os.path.dirname(__file__))
   PROJECT_NAME = 'TACSite'
 
+  LOG_FOLDER = BASEDIR
+
   DEBUG = True
 
   SECRET_KEY = 'dTash$8d6V$§28(!cjNanDI9=&hs"2'
+  ADMINS = ['youremail@yourdomain.com']
 
   SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(BASEDIR, 'data-dev.sqlite')
-
 
   MAIL_SERVER = 'mail.yourdomain.com'
   MAIL_PORT = 587
