@@ -14,7 +14,7 @@ def send_registration_mail(team):
 
         Euer Team %s ist registiert.
         Um die Anmeldung abzuschließen, bitten wir euch noch
-        die Teilnahmegebühr von 25€ auf folgendes Konto zu überweisen.
+        die Teilnahmegebühr von 15€ auf folgendes Konto zu überweisen.
 
         Konto-Inhaber: Alexander Flesch
         IBAN: DE 5612 0965 9700 0124 9282
@@ -28,7 +28,7 @@ def send_registration_mail(team):
 
 
         Hier nochmal die wichtigsten Informationen zum Turnier:
-        - Wann: 29.08.2015, 9 Uhr - Spielbeginn 9:30 Uhr
+        - Wann: 17.09.2016, 9 Uhr - Spielbeginn 9:30 Uhr
         - Wo: Modersohnstraße 55, 10245 Berlin
         - Abmeldungen: Bitte bis spätestens 26.08.2015
 
