@@ -12,7 +12,7 @@ def send_registration_mail(team):
         Hallo %s und %s,
         schön dass ihr bei unserem Turnier mitmachen wollt.
 
-        Euer Team %s ist registiert.
+        Euer Team %s ist registriert.
         Um die Anmeldung abzuschließen, bitten wir euch noch
         die Teilnahmegebühr von 15€ auf folgendes Konto zu überweisen.
 
